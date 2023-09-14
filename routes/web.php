@@ -14,5 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('list');
 });
+Route::get('/test', function () {
+    return view('test');
+})->name("index.test"); //이름 붙이기
