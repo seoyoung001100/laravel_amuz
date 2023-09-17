@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('flights');
+        Schema::dropIfExists('laravel_amuz'); //laravel_amuz로 바꿔야 하나..??
     }
 };
