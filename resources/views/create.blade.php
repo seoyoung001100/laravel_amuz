@@ -80,17 +80,19 @@
     <div>
         <h1>Create</h1>
     </div>
-    <div class="writing">
-        <div class="writing_head"></div> {{--이부분에 현재 날짜 혹은 시간이 나오게 구현하고 싶음.--}}
-        <div class="writing_main">
-            <input class="title" type="text" placeholder="제목을 입력해주세요." required>
-            <hr>
-            <textarea placeholder="내용을 입력해주세요." required></textarea>
+    <form action="{{route("upload")}}" method="post">
+        @csrf {{--  보안 --}}
+        <div class="writing">
+            <div class="writing_head"></div> {{--이부분에 현재 날짜 혹은 시간이 나오게 구현하고 싶음.--}}
+            <div class="writing_main">
+                <input name="title" id="title" class="title" type="text" placeholder="제목을 입력해주세요." required>
+                <hr>
+                <textarea name="name" id="contents" placeholder="내용을 입력해주세요." required></textarea>
+            </div>
         </div>
-    </div>
-    <div class="button">
-        <div class="button1"><a href=""><input type="button" value="삭제하기"></a></div> {{--콘솔창>삭제했다는 콘솔>list로 돌아감--}}
-        <div class="button2"><a href=""><input type="button" value="저장하기"></a></div> {{--콘솔창>저장했다는 콘솔>list로 돌아감--}}
-    </div>
+        <div class="button">
+            <div class="button2"><input type="submit" value="저장하기"></div> {{--콘솔창>저장했다는 콘솔>list로 돌아감--}}
+        </div>
+    </form>
 </body>
 </html>

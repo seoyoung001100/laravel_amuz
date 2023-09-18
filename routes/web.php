@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\pagesController;
-use Illuminate\Support\Facades\postController;
+use \App\Http\Controllers\postcontroller;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,12 +15,11 @@ use Illuminate\Support\Facades\postController;
 |
 */
 
-Route::get('/', function () {
-    return view('list');
-});
 Route::get('/create', function () {
     return view('create');
-})->name("index.create"); //이름 붙이기
+})->name("index.create");
+Route::get('/', [postcontroller::class, 'list' ])->name('list'); //이름 붙이기
+Route::post('/upload', [postcontroller::class, 'upload' ])->name('upload'); 
 
 // Route::get('/test', function () {
 //     return view('test');
