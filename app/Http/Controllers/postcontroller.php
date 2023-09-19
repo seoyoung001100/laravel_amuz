@@ -16,18 +16,27 @@ class postcontroller extends Controller
     }
     public function list()
     {
-        return view('list');
+        $contents = $this->laravel_amuz->paginate(15);
+        return view('list', compact('contents')); //모델 가져옴
     }
     public function create(){
         return view('create');
     }
+    // public function show(){
+    //     return view('show');
+    // }
     public function upload(Request $request){
         $request=$request->validate([
             'title'=>'required',
-            'name'=>'required'
-        ]);
+            'text'=>'required',
+            'name'=>'required',
+            'password'=>'required'
+        ]); //들어가는 값들에 해당 설정을 부여하지 않으면 오류가 남
         $this->laravel_amuz->create($request);
         return redirect()->route('list');
     }
-
+    public function show(Request $request){
+            $contents = $this->laravel_amuz;
+            return view('show', compact('contents'));
+        }
 }

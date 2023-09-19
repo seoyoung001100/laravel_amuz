@@ -15,7 +15,10 @@ return new class extends Migration
             $table->id();
             $table->timestamps(); //날짜
             $table->string("title"); //테이블 이름 지정
-            $table->string("name"); //작성자
+            $table->string("text"); //테이블 이름 지정
+            $table->string("name");
+            $table->string("password");
+            
         });
     }
 
@@ -24,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('laravel_amuzs'); //laravel_amuz로 바꿔야 하나..??
+        Schema::dropIfExists('laravel_amuzs');
     }
 };

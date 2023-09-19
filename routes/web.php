@@ -15,11 +15,11 @@ use \App\Http\Controllers\postcontroller;
 |
 */
 
-Route::get('/create', function () {
-    return view('create');
-})->name("index.create");
 Route::get('/', [postcontroller::class, 'list' ])->name('list'); //이름 붙이기
+Route::get('/create', [postcontroller::class, 'create' ])->name('create'); //이름 붙이기
+// Route::get('/show', [postcontroller::class, 'show' ])->name('show'); //이름 붙이기
 Route::post('/upload', [postcontroller::class, 'upload' ])->name('upload'); 
+Route::get('contents/{content}',[postController::class, 'show'])->name("contents.show");
 
 // Route::get('/test', function () {
 //     return view('test');

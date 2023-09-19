@@ -9,7 +9,7 @@ class AmuzModel extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'title', 'name'
+        'title', 'text', 'name', 'password'
     ];
 
 }

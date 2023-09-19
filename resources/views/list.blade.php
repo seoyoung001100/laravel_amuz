@@ -68,6 +68,19 @@
             border-bottom: 1px solid rgba(0,0,0,.1);
             background: #fff;
         }
+
+        #th_No{
+            width: 15%;
+        }
+        #th_Title{
+            width: 35%;
+        }
+        #th_Name{
+            width: 25%;
+        }
+        #th_Date{
+            width: 25%;
+        }
         
         /* ------------------ 하단 부분 */
         .page_num{
@@ -133,6 +146,9 @@
             border-bottom: 1px solid #e5e5e5;
             }
             }
+            .title_a{
+                color: #47372a;
+            }
     </style>
 
 <body>
@@ -146,25 +162,27 @@
     </div>
     <div class="under_head">
         <div class="under_head_1"><h5>Total</h5></div> {{--total을 나타내고 싶음... --}}
-        <div class="under_head_2"><a href="{{route("index.create")}}"><input type="button" value="글쓰기"/></a></div> {{--글쓰기 페이지로 넘어가야함--}}
+        <div class="under_head_2"><a href="{{route("create")}}"><input type="button" value="글쓰기"/></a></div> {{--글쓰기 페이지로 넘어가야함--}}
     </div>
     
     <div class="list_wrap">
         <table class="list">
             <thead> {{-- 헤더 콘텐츠 묶음 --}}
                 <tr>
-                    <th>No.</th>
-                    <th>Title</th>
-                    <th>Name</th>
-                    <th>Date</th>
+                    <th id="th_No">No.</th>
+                    <th id="th_Title">Title</th>
+                    <th id="th_Name">Name</th>
+                    <th id="th_Date">Date</th>
                 </tr>
             </thead>
+            @foreach ($contents as $key => $content)
             <tr>
-                <td>001</td>
-                <td>Laravel_amuz</td>
-                <td>이서영</td>
-                <td>2023. 09. 13.</td>
+                <td>{{$content -> id}}</td>
+                <td><a href="{{route("contents.show", $content -> title)}}" class="title_a"> {{$content -> title}} </a></td>  {{--route로 show 페이지로 넘어가게 만듦--}}
+                <td>{{$content -> name}}</td>
+                <td>{{$content -> updated_at}}</td>
             </tr>
+            @endforeach
         </table>
     </div>
     <div class="page_num"> {{--페이지 수--}}
@@ -176,6 +194,5 @@
         <div class="page_num_1"><a href="">5</a></div>
         <div class="page_num_1"><a href="">></a></div>
     </div>
-
 </body>
 </html>

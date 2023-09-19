@@ -10,6 +10,6 @@ class laravel_amuz extends Model
     use HasFactory;
     use HasFactory;
     protected $fillable = [
-        'title', 'name'
+        'title', 'text', 'name', 'password'
     ];
 }

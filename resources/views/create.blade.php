@@ -22,15 +22,38 @@
             color: #47372a
         }
         .writing{
-            height: 600px;
+            height: 430px;
             border-radius: 5px;
             box-shadow: 0 2px 5px rgba(0,0,0,.25);
             border: solid #ffffff 1px;
         }
+        .writing_top{
+            display: flex;
+        }
+        .writing_1{
+            height: 55px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,.25);
+            border: solid #ffffff 1px;
+            width: 49%;
+        }
+        .writing_1>.writing_main>.title{
+            font-size: 15px;
+            width: 50%;
+            height: 15px;
+        }
+        .writing_1>.writing_head{
+            width: 480px;
+            height: 20px;
+        }
         .writing_head{
+            width: 990px;
             background-color: #9E8A7A;
             height: 30px;
             border-radius: 5px 5px 0px 0px;
+            line-height: 30px;
+            color: #ffffff;
+            padding-left: 10px;
         }
         /* ---------------------- 글쓰는 부분 ---------------------- */
         hr{
@@ -54,7 +77,7 @@
         }
         textarea{
             margin-top: 10px;
-            height: 480px; /*이후 글자 속성? 같은거 추가하면 줄여야함*/
+            height: 310px; /*이후 글자 속성? 같은거 추가하면 줄여야함*/
             resize: none;
         }
 
@@ -82,17 +105,41 @@
     </div>
     <form action="{{route("upload")}}" method="post">
         @csrf {{--  보안 --}}
+        <div class="writing_top">
+            <div class="writing_1">
+                <div class="writing_head"></div>
+                <div class="writing_main">
+                    <input name="name" class="title" type="text" placeholder="이름을 입력해주세요." required>
+                </div>
+            </div>
+            <div class="writing_1">
+                <div class="writing_head"></div>
+                <div class="writing_main">
+                    <input name="password" class="title" type="password" placeholder="비밀번호를 입력해주세요." required>
+                </div>
+            </div>
+            </div>
+        <br>
+
         <div class="writing">
-            <div class="writing_head"></div> {{--이부분에 현재 날짜 혹은 시간이 나오게 구현하고 싶음.--}}
+            <div class="writing_head" id="writing_head"></div> {{--이부분에 현재 날짜 혹은 시간이 나오게 구현하고 싶음.--}}
             <div class="writing_main">
                 <input name="title" id="title" class="title" type="text" placeholder="제목을 입력해주세요." required>
                 <hr>
-                <textarea name="name" id="contents" placeholder="내용을 입력해주세요." required></textarea>
+                <textarea name="text" id="contents" placeholder="내용을 입력해주세요." required></textarea>
             </div>
-        </div>
+        </div><br>
+        
         <div class="button">
-            <div class="button2"><input type="submit" value="저장하기"></div> {{--콘솔창>저장했다는 콘솔>list로 돌아감--}}
+            <div class="button2"><input type="submit" value="저장하기" ></div> {{--콘솔창>저장했다는 콘솔>list로 돌아감--}}
         </div>
     </form>
+    
+    <script>
+        let today = new Date();
+        document.getElementById("writing_head").innerHTML=today.toLocaleDateString()
+        
+    </script>
 </body>
+
 </html>
