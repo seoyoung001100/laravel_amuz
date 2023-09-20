@@ -178,7 +178,7 @@
             @foreach ($contents as $key => $content)
             <tr>
                 <td>{{$content -> id}}</td>
-                <td><a href="{{route("contents.show", $content -> title)}}" class="title_a"> {{$content -> title}} </a></td>  {{--route로 show 페이지로 넘어가게 만듦--}}
+                <td><a href="{{route("contents.show", $content->id)}}" class="title_a"> {{$content->title}} </a></td>  {{--route로 show 페이지로 넘어가게 만듦--}}
                 <td>{{$content -> name}}</td>
                 <td>{{$content -> updated_at}}</td>
             </tr>

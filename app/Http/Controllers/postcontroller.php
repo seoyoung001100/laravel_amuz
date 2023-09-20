@@ -14,17 +14,15 @@ class postcontroller extends Controller
         // 일단은 이렇게 모델을 가져오는 것이 추천 코드라고 생각하시면 됩니다.
         $this->laravel_amuz = $laravel_amuz;
     }
-    public function list()
-    {
+    public function list(){
         $contents = $this->laravel_amuz->paginate(15);
         return view('list', compact('contents')); //모델 가져옴
     }
+
     public function create(){
         return view('create');
     }
-    // public function show(){
-    //     return view('show');
-    // }
+
     public function upload(Request $request){
         $request=$request->validate([
             'title'=>'required',
@@ -35,8 +33,9 @@ class postcontroller extends Controller
         $this->laravel_amuz->create($request);
         return redirect()->route('list');
     }
-    public function show(Request $request){
-            $contents = $this->laravel_amuz;
-            return view('show', compact('contents'));
+
+    public function show(laravel_amuz $laravel_amuz){
+            return $laravel_amuz;
+            return view('show', compact('laravel_amuz'));
         }
 }

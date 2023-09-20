@@ -45,13 +45,12 @@
 </head>
 <body>
     @section('content')
-        @foreach ($contents as $key => $content)
             <h1></h1>
 
             <div class="writing">
                 <div class="writing_head"></div>
             </div>
-        @endforeach
+    @endsection
 
 </body>
 </html>
