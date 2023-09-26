@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\laravel_amuz;
+use Illuminate\Support\Facades\DB;
 
 class postcontroller extends Controller
 {
@@ -34,8 +35,31 @@ class postcontroller extends Controller
         return redirect()->route('list');
     }
 
-    public function show(laravel_amuz $laravel_amuz){
-            return $laravel_amuz;
-            return view('show', compact('laravel_amuz'));
-        }
+    public function show(Request $request){
+        $contentId = $request->content;
+        $laravel_amuz = DB::table('laravel_amuzs')->where('id', $contentId)->get(); //쿼리문에 해당하는 배열을 가져옴
+        return view('show', compact("laravel_amuz"));
+    }
+    public function edit(Request $request){
+        $contentId = $request->content;
+        $laravel_amuz = DB::table('laravel_amuzs')->where('id', $contentId)->get();
+        return view('edit', compact("laravel_amuz"));
+    }
+    public function update(Request $request){
+        // $request -> title = $request -> post('title');
+        // $request -> text = $request -> post('text');
+        $title = $request->input('title');
+        $text = $request->input('text');
+
+        // 데이터 수정 로직
+        // ...
+
+        // 예시: 수정된 데이터 저장
+        $updatedData = [
+            'title' => $title,
+            'text' => $text,
+        ];
+
+        return redirect(route('list')) -> with('alert-success', '수정되었습니다.');
+    }
 }

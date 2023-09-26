@@ -24,6 +24,7 @@
             border-radius: 5px;
             box-shadow: 0 2px 5px rgba(0,0,0,.25);
             border: solid #ffffff 1px;
+            color: #47372a;
         }
         .writing_head{
             width: 990px;
@@ -41,16 +42,36 @@
             background-color: #cfbbab;
             border: 0;
         }
+        .title{
+            margin-top: 10px;
+            padding: 0 10px;
+            height: 40px;
+            font-size: 30px;
+            color: #47372a;
+        }
+        .writing_text{
+            padding: 20px 20px;
+        }
+        .btn{
+            text-align: center;
+            margin-top: 25px;
+        }
+        .btn>input{
+            margin: 0 15px;
+        }
     </style>
 </head>
 <body>
-    @section('content')
-            <h1></h1>
+            <h1>{{$laravel_amuz[0]->title}}</h1>
 
             <div class="writing">
-                <div class="writing_head"></div>
+                <div class="writing_head">No. {{$laravel_amuz[0]->id}}</div>
+                <div class="writing_text"> {{$laravel_amuz[0]->text}} </div>
             </div>
-    @endsection
+            <div class="btn">
+                <input type="button" value="수정" onclick=" location.href= '{{route('edit', $laravel_amuz[0]->id)}}'">
+                <input type="button" value="삭제">
+            </div>
 
 </body>
 </html>
