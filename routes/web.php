@@ -21,6 +21,7 @@ Route::post('/upload', [postcontroller::class, 'upload' ])->name('upload');
 Route::get('contents/{content}',[postController::class, 'show'])->name("show");
 Route::get('contents/edit/{content}',[postController::class, 'edit'])->name("edit");
 Route::post('contents/edit/{content}',[postController::class, 'update'])->name("update");
+Route::delete('contents/{content}', [postController::class, 'destroy']) -> name('delete');
 
 // Route::get('/test', function () {
 //     return view('test');

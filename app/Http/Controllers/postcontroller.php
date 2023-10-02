@@ -11,12 +11,10 @@ class postcontroller extends Controller
     private $laravel_amuz;
 
     public function __construct(laravel_amuz $laravel_amuz){
-        // Laravel 의 IOC(Inversion of Control) 입니다
-        // 일단은 이렇게 모델을 가져오는 것이 추천 코드라고 생각하시면 됩니다.
         $this->laravel_amuz = $laravel_amuz;
     }
     public function list(){
-        $contents = $this->laravel_amuz->paginate(15);
+        $contents = $this->laravel_amuz->paginate(5);
         return view('list', compact('contents')); //모델 가져옴
     }
 
@@ -46,20 +44,23 @@ class postcontroller extends Controller
         return view('edit', compact("laravel_amuz"));
     }
     public function update(Request $request){
-        // $request -> title = $request -> post('title');
-        // $request -> text = $request -> post('text');
+
         $title = $request->input('title');
-        $text = $request->input('text');
+        $text = $request->input('text');    
 
-        // 데이터 수정 로직
-        // ...
-
-        // 예시: 수정된 데이터 저장
         $updatedData = [
-            'title' => $title,
-            'text' => $text,
+            'title' => request('title'),
+            'text' => request('text')
+            
         ];
+        
+        return redirect(route('list'));
+    }
 
-        return redirect(route('list')) -> with('alert-success', '수정되었습니다.');
+
+    public function destroy(laravel_amuz $laravel_amuz){
+        $laravel_amuz->delete($laravel_amuz);
+ 
+        return redirect(route('list'));
     }
 }

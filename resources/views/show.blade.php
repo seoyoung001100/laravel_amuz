@@ -70,7 +70,12 @@
             </div>
             <div class="btn">
                 <input type="button" value="수정" onclick=" location.href= '{{route('edit', $laravel_amuz[0]->id)}}'">
-                <input type="button" value="삭제">
+                <form method="POST" action="/contents/{{ $laravel_amuz[0]->id }}">
+                    @csrf
+                    @method('delete')
+                    <button type="submit">삭제
+                </form>
+               
             </div>
 
 </body>
