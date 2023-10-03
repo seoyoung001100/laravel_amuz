@@ -185,7 +185,7 @@
             @endforeach
         </table>
     </div>
-    <div class="page_num"> {{--페이지 수--}}
+    {{-- <div class="page_num">
         <div class="page_num_1"><a href=""><</a></div>
         <div class="page_num_1"><a href="">1</a></div>
         <div class="page_num_1"><a href="">2</a></div>
@@ -193,6 +193,13 @@
         <div class="page_num_1"><a href="">4</a></div>
         <div class="page_num_1"><a href="">5</a></div>
         <div class="page_num_1"><a href="">></a></div>
-    </div>
+    </div> --}}
+    {{-- <div class="page_num">
+        <div class="page_num_1">
+            
+        </div>
+    </div> --}}
+    
+    {{ $contents->links() }}
 </body>
 </html>

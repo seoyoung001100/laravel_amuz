@@ -13,15 +13,19 @@ class postcontroller extends Controller
     public function __construct(laravel_amuz $laravel_amuz){
         $this->laravel_amuz = $laravel_amuz;
     }
+
+
+    //페이지네이션
     public function list(){
         $contents = $this->laravel_amuz->paginate(5);
         return view('list', compact('contents')); //모델 가져옴
     }
 
+
     public function create(){
         return view('create');
     }
-
+    //글 작성
     public function upload(Request $request){
         $request=$request->validate([
             'title'=>'required',
@@ -33,34 +37,49 @@ class postcontroller extends Controller
         return redirect()->route('list');
     }
 
+
+    //상세보기
     public function show(Request $request){
         $contentId = $request->content;
         $laravel_amuz = DB::table('laravel_amuzs')->where('id', $contentId)->get(); //쿼리문에 해당하는 배열을 가져옴
         return view('show', compact("laravel_amuz"));
     }
+
+
+    //글 수정
     public function edit(Request $request){
         $contentId = $request->content;
         $laravel_amuz = DB::table('laravel_amuzs')->where('id', $contentId)->get();
         return view('edit', compact("laravel_amuz"));
     }
-    public function update(Request $request){
 
+
+    //데이터 업데이트
+    public function update(Request $request){
+        $contentId = $request->content;
         $title = $request->input('title');
         $text = $request->input('text');    
 
         $updatedData = [
             'title' => request('title'),
             'text' => request('text')
-            
         ];
+
+        $affected = DB::table('laravel_amuzs')
+            ->where('id', $contentId) //인덱스 번호
+            ->update(['title' => $title, 'text' => $text]); //내용 수정
         
         return redirect(route('list'));
     }
 
+    //글 삭제
+    public function destroy(Request $request){
+        // $laravel_amuz->delete($laravel_amuz);
+        $contentId = $request->content;
+        $title = $request->input('title');
+        $text = $request->input('text');  
 
-    public function destroy(laravel_amuz $laravel_amuz){
-        $laravel_amuz->delete($laravel_amuz);
- 
+        $deleted = DB::table('laravel_amuzs')->where('id', $contentId)->delete();
         return redirect(route('list'));
     }
 }
