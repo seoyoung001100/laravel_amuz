@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @vite('resources/css/app.css')
     <title>show</title>
     <style>
          body{
@@ -17,7 +18,10 @@
         }
         h1{
             text-align: center;
-            color: #47372a
+            color: #47372a;
+            font-size: 30px;
+            font-weight: bold;
+            margin-bottom: 30px
         }
         .writing{
             height: 500px;
@@ -27,7 +31,7 @@
             color: #47372a;
         }
         .writing_head{
-            width: 990px;
+            width: 998px;
             background-color: #9E8A7A;
             height: 30px;
             border-radius: 5px 5px 0px 0px;
@@ -54,10 +58,9 @@
         }
         .btn{
             text-align: center;
-            margin-top: 25px;
-        }
-        .btn>input{
-            margin: 0 15px;
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
         }
     </style>
 </head>
@@ -69,11 +72,11 @@
                 <div class="writing_text"> {{$laravel_amuz[0]->text}} </div>
             </div>
             <div class="btn">
-                <input type="button" value="수정" onclick=" location.href= '{{route('edit', $laravel_amuz[0]->id)}}'">
+                <input class="m-2 h-7 w-20 items-center justify-center rounded-full bg-[#9E8A7A] from-pink-600 to-pink-400 p-0 text-sm text-white shadow-md shadow-pink-[#000000] duration-150 ease-in-out" type="button" value="수정" onclick=" location.href= '{{route('edit', $laravel_amuz[0]->id)}}'">
                 <form method="POST" action="/contents/{{ $laravel_amuz[0]->id }}">
                     @csrf
                     @method('delete')
-                    <button type="submit">삭제
+                    <button class="m-2 h-7 w-20 items-center justify-center rounded-full bg-[#9E8A7A] from-pink-600 to-pink-400 p-0 text-sm text-white shadow-md shadow-pink-[#000000] duration-150 ease-in-out" type="submit">삭제
                 </form>
                
             </div>

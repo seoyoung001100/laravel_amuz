@@ -16,6 +16,10 @@
             margin: 0 auto;
             width: 1000px;
         }
+        a{
+            text-align: center;
+            margin: 20px 20px;
+        }
         div h1{
             text-align: center;
             color: #47372a;
@@ -23,7 +27,7 @@
             font-weight: bold;
         }
         div h5{
-            margin: 0;
+            line-height: 36px;
             margin-left: 10px;
             color: #47372a;
         }
@@ -154,9 +158,9 @@
     </style>
 </head>
 <body>
-    <h1 class="text-3xl font-bold underline">
+    {{-- <h1 class="text-3xl font-bold underline">
         Hello world!
-    </h1>
+    </h1> --}}
     {{-- <a href="{{route("index.test")}}">test</a>  --}}
     {{-- route name으로 불러오기 --}}
     <div>
@@ -164,7 +168,7 @@
     </div>
     <div class="under_head">
         <div class="under_head_1"><h5>Total</h5></div> {{--total을 나타내고 싶음... --}}
-        <div class="under_head_2"><a href="{{route("create")}}"><input type="button" value="글쓰기"/></a></div> {{--글쓰기 페이지로 넘어가야함--}}
+        <div class="under_head_2"><a href="{{route("create")}}"><button class="mb-2 h-7 w-20 items-center justify-center rounded-full bg-[#9E8A7A] from-pink-600 to-pink-400 p-0 text-sm text-white shadow-md shadow-pink-[#000000] duration-150 ease-in-out"  type="submit" value="글쓰기"/>글쓰기</a></div> {{--글쓰기 페이지로 넘어가야함--}}
     </div>
     
     <div class="list_wrap">
@@ -187,70 +191,25 @@
             @endforeach
         </table>
     </div>
+    
     {{-- <div class="page_num">
-        <div class="page_num_1"><a href=""><</a></div>
-        <div class="page_num_1"><a href="">1</a></div>
-        <div class="page_num_1"><a href="">2</a></div>
-        <div class="page_num_1"><a href="">3</a></div>
-        <div class="page_num_1"><a href="">4</a></div>
-        <div class="page_num_1"><a href="">5</a></div>
-        <div class="page_num_1"><a href="">></a></div>
-    </div> --}}
-    {{-- <div class="page_num">
-        <div class="page_num_1">
-            
-        </div>
+        <div>{{ $contents->links() }}</div>
+        
     </div> --}}
 
-    <div class="mt-5 my-auto flex justify-around">
-        <nav>
-            <ul class="flex">
-              <li>
-                <a
-                  class="mx-1 flex h-9 w-9 items-center justify-center rounded-full bg-[#9E8A7A] border border-blue-gray-100 bg-transparent p-0 text-sm text-blue-gray-500 transition duration-150 ease-in-out hover:bg-light-300"
-                  href="#"
-                  aria-label="Previous"
-                >
-                  <span class="material-icons text-sm"><</span>
-                </a>
-              </li>
-              <li>
-                <a
-                  class="mx-1 flex h-9 w-9 items-center justify-center rounded-full bg-[#9E8A7A] from-pink-600 to-pink-400 p-0 text-sm text-white shadow-md shadow-pink-500/20 transition duration-150 ease-in-out"
-                  href="#"
-                >
-                  1
-                </a>
-              </li>
-              <li>
-                <a
-                  class="mx-1 flex h-9 w-9 items-center justify-center rounded-full bg-[#9E8A7A] border border-blue-gray-100 bg-transparent p-0 text-sm text-blue-gray-500 transition duration-150 ease-in-out hover:bg-light-300"
-                  href="#"
-                >
-                  2
-                </a>
-              </li>
-              <li>
-                <a
-                  class="mx-1 flex h-9 w-9 items-center justify-center rounded-full bg-[#9E8A7A] border border-blue-gray-100 bg-transparent p-0 text-sm text-blue-gray-500 transition duration-150 ease-in-out hover:bg-light-300"
-                  href="#"
-                >
-                  3
-                </a>
-              </li>
-              <li>
-                <a
-                  class="mx-1 flex h-9 w-9 items-center justify-center rounded-full bg-[#9E8A7A] border border-blue-gray-100 bg-transparent p-0 text-sm text-blue-gray-500 transition duration-150 ease-in-out hover:bg-light-300"
-                  href="#"
-                  aria-label="Next"
-                >
-                  <span class="material-icons text-sm">></span>
-                </a>
-              </li>
-            </ul>
-          </nav>
-    </div>
-    
-    {{ $contents->links() }}
+        <div style="display: flex; text-align: center; justify-content: center;">
+            @if ($contents->currentPage() > 0)
+                <a href="{{ $contents->previousPageUrl() }}"><i class="fa fa-chevron-left mx-1 flex h-7 w-7 items-center justify-center rounded-full bg-[#9E8A7A] from-pink-600 to-pink-400 p-0 text-sm text-white shadow-md shadow-pink-[#000000] transition duration-150 ease-in-out"
+                    href="#"><</i></a>
+            @endif
+            @for($i = 1; $i <= $contents->lastPage(); $i++)
+                <a href="{{$contents->url($i)}}" class="fa fa-chevron-left mx-1 flex h-7 w-7 items-center justify-center rounded-full bg-[#9E8A7A] from-pink-600 to-pink-400 p-0 text-sm text-white shadow-md shadow-pink-[#000000] transition duration-150 ease-in-out"
+                    href="#">{{$i}}</a>
+            @endfor
+            @if ($contents->currentPage() <= $contents->lastPage() )
+                <a href="{{$contents->nextPageUrl()}}"><i class="fa fa-chevron-left mx-1 flex h-7 w-7 items-center justify-center rounded-full bg-[#9E8A7A] from-pink-600 to-pink-400 p-0 text-sm text-white shadow-md shadow-pink-[#000000] transition duration-150 ease-in-out"
+                    href="#">></i></a>
+            @endif
+        </div>
 </body>
 </html>
