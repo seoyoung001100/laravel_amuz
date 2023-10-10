@@ -18,12 +18,14 @@
         }
         div h1{
             text-align: center;
-            color: #47372a
+            color: #47372a;
+            font-size: 30px;
+            font-weight: bold;
         }
         div h5{
             margin: 0;
             margin-left: 10px;
-            color: #47372a
+            color: #47372a;
         }
         .under_head{
             display: flex;
@@ -152,9 +154,9 @@
     </style>
 </head>
 <body>
-    {{-- <h1 class="text-3xl font-bold underline">
+    <h1 class="text-3xl font-bold underline">
         Hello world!
-    </h1> --}}
+    </h1>
     {{-- <a href="{{route("index.test")}}">test</a>  --}}
     {{-- route name으로 불러오기 --}}
     <div>
@@ -249,6 +251,6 @@
           </nav>
     </div>
     
-    {{-- {{ $contents->links() }} --}}
+    {{ $contents->links() }}
 </body>
 </html>
