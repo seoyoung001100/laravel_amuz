@@ -181,9 +181,9 @@
                     <th id="th_Date">Date</th>
                 </tr>
             </thead>
-            @foreach ($contents as $key => $content)
+            @foreach ($contents as $key => $content) {{-- key는 index값을 말한다. --}}
             <tr>
-                <td>{{$content -> id}}</td>
+                <td>{{$key+1}}</td> {{-- 0부터 시작하기 때문에 +1 해준다. --}}
                 <td><a href="{{route("show", $content->id)}}" class="title_a"> {{$content->title}} </a></td>  {{--route로 show 페이지로 넘어가게 만듦--}}
                 <td>{{$content -> name}}</td>
                 <td>{{$content -> updated_at}}</td>

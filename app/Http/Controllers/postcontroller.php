@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\laravel_amuz;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class postcontroller extends Controller
 {
@@ -16,9 +17,10 @@ class postcontroller extends Controller
 
 
     //페이지네이션
-    public function list(){
-        $contents = $this->laravel_amuz->paginate(5);
-        return view('list', compact('contents')); //모델 가져옴
+    public function list(Request $request){
+        $contents = $this->laravel_amuz->paginate(5); //내림차순으로 정리되게 함
+        // $descending_order = $contents->total() - ($contents->currentPage()-1) * ($contents->perPage());
+        return view('list', compact(['contents'])); //모델 가져옴
     }
 
 
@@ -49,6 +51,7 @@ class postcontroller extends Controller
     //글 수정
     public function edit(Request $request){
         $contentId = $request->content;
+        
         $laravel_amuz = DB::table('laravel_amuzs')->where('id', $contentId)->get();
         return view('edit', compact("laravel_amuz"));
     }
@@ -58,7 +61,9 @@ class postcontroller extends Controller
     public function update(Request $request){
         $contentId = $request->content;
         $title = $request->input('title');
-        $text = $request->input('text');    
+        $text = $request->input('text');
+        $currentDateTime = Carbon::now()->toDateTimeString(); //날짜 및 시간을 현재시간으로 불러옴. 
+        // echo $currentDateTime->toDateTimeString('');
 
         $updatedData = [
             'title' => request('title'),
@@ -67,7 +72,7 @@ class postcontroller extends Controller
 
         $affected = DB::table('laravel_amuzs')
             ->where('id', $contentId) //인덱스 번호
-            ->update(['title' => $title, 'text' => $text]); //내용 수정
+            ->update(['title' => $title, 'text' => $text, 'updated_at' => $currentDateTime]); //내용 수정, 데이터베이스에 입력
         
         return redirect(route('list'));
     }

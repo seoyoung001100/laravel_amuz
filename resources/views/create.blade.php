@@ -128,7 +128,9 @@
         <br>
 
         <div class="writing">
-            <div class="writing_head" id="writing_head"></div> {{--이부분에 현재 날짜 혹은 시간이 나오게 구현하고 싶음.--}}
+            <div class="writing_head" id="writing_head">
+                <input id="Today" name="Today_Time" onclick="today">
+            </div> {{--이부분에 현재 날짜 혹은 시간이 나오게 구현하고 싶음.--}}
             <div class="writing_main">
                 <input name="title" id="title" class="title" type="text" placeholder="제목을 입력해주세요." required>
                 <hr>
