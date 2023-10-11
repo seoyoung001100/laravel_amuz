@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    @vite('resources/css/app.css')
     <title>Create</title>
     <style>
         /* @import url(resources/css/list.css); */
@@ -19,7 +20,10 @@
         }
         div h1{
             text-align: center;
-            color: #47372a
+            color: #47372a;
+            font-size: 30px;
+            font-weight: bold;
+            margin-bottom: 30px;
         }
         .writing{
             height: 430px;
@@ -43,11 +47,11 @@
             height: 15px;
         }
         .writing_1>.writing_head{
-            width: 480px;
+            width: 488px;
             height: 20px;
         }
         .writing_head{
-            width: 990px;
+            width: 998px;
             background-color: #9E8A7A;
             height: 30px;
             border-radius: 5px 5px 0px 0px;
@@ -57,11 +61,12 @@
         }
         /* ---------------------- 글쓰는 부분 ---------------------- */
         hr{
-            width: 970px;
+            width: 978px;
             height: 1px;
             text-align: center;
             background-color: #cfbbab;
             border: 0;
+            margin: 0 auto;
         }
         .writing_main>input, textarea{
             border: none;
@@ -115,7 +120,7 @@
         </div><br>
         
         <div class="button">
-            <div class="button2"><input type="submit" value="저장하기" ></div> {{--콘솔창>저장했다는 콘솔>list로 돌아감--}}
+            <div class="button2"><input class="mb-2 h-7 w-20 items-center justify-center rounded-full bg-[#9E8A7A] from-pink-600 to-pink-400 p-0 text-sm text-white shadow-md shadow-pink-[#000000] duration-150 ease-in-out"  type="submit" value="저장하기" ></div> {{--콘솔창>저장했다는 콘솔>list로 돌아감--}}
         </div>
     </form>
     
