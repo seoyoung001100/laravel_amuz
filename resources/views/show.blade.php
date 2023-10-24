@@ -66,9 +66,8 @@
 </head>
 <body>
             <h1>{{$laravel_amuz[0]->title}}</h1>
-
             <div class="writing">
-                <div class="writing_head">No. {{$laravel_amuz[0]->id}}</div>
+                <div class="writing_head">No.{{$laravel_amuz[0]->id}}</div>
                 <div class="writing_text"> {{$laravel_amuz[0]->text}} </div>
             </div>
             <div class="btn">

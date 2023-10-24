@@ -181,9 +181,10 @@
                     <th id="th_Date">Date</th>
                 </tr>
             </thead>
-            @foreach ($contents as $key => $content) {{-- key는 index값을 말한다. --}}
+            @csrf
+            @foreach ($contents as $key => $content)
             <tr>
-                <td>{{$key+1}}</td> {{-- 0부터 시작하기 때문에 +1 해준다. --}}
+                <td>{{$key+1}}</td>
                 <td><a href="{{route("show", $content->id)}}" class="title_a"> {{$content->title}} </a></td>  {{--route로 show 페이지로 넘어가게 만듦--}}
                 <td>{{$content -> name}}</td>
                 <td>{{$content -> updated_at}}</td>
@@ -192,11 +193,10 @@
         </table>
     </div>
     
-    {{-- <div class="page_num">
-        <div>{{ $contents->links() }}</div>
-        
-    </div> --}}
+    
 
+    
+    
         <div style="display: flex; text-align: center; justify-content: center;">
             @if ($contents->currentPage() > 0)
                 <a href="{{ $contents->previousPageUrl() }}"><i class="fa fa-chevron-left mx-1 flex h-7 w-7 items-center justify-center rounded-full bg-[#9E8A7A] from-pink-600 to-pink-400 p-0 text-sm text-white shadow-md shadow-pink-[#000000] transition duration-150 ease-in-out"
