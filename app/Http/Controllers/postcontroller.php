@@ -19,7 +19,7 @@ class postcontroller extends Controller
     //페이지네이션
     public function list(Request $request){
         // $this->laravel_amuz = $laravel_amuz; //총 레코드 수
-        $contents = $this->laravel_amuz->orderBy('created_at', 'desc')->paginate(5); //내림차순으로 정리되게 함
+        $contents = $this->laravel_amuz->orderBy('created_at', 'desc')->paginate(1); //내림차순으로 정리되게 함
         // $pageNum = ($_GET['page']) ? $_GET['page'] : 1;
         // $block_count = 5;
         // $block_num = ceil($pageNum/$block_count);

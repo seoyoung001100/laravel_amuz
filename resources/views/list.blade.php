@@ -8,6 +8,10 @@
     <title>NOTES</title>
     <style>
         /* @import url(resources/css/list.css); */
+        * {
+            margin: 0;
+            padding: 0;
+        }
         body{
             margin-top: 10%
         }
@@ -19,6 +23,15 @@
         a{
             text-align: center;
             margin: 20px 20px;
+            padding: 0 0;
+            height: 25px;
+        }
+        span{
+            height: 25px;
+            margin-top:10px;
+            margin-left: 20px;
+            margin-right: 20px;
+            padding: 0 0;
         }
         div h1{
             text-align: center;
@@ -192,11 +205,6 @@
             @endforeach
         </table>
     </div>
-    
-    
-
-    
-    
         <div style="display: flex; text-align: center; justify-content: center;">
             @if ($contents->currentPage() > 0)
                 <a href="{{ $contents->previousPageUrl() }}"><i class="fa fa-chevron-left mx-1 flex h-7 w-7 items-center justify-center rounded-full bg-[#9E8A7A] from-pink-600 to-pink-400 p-0 text-sm text-white shadow-md shadow-pink-[#000000] transition duration-150 ease-in-out"
@@ -211,5 +219,12 @@
                     href="#">></i></a>
             @endif
         </div>
+        <div style="display: flex; text-align: center; justify-content: center;">
+            @for($i = 1; $i <= $contents->lastPage(); $i++)
+                <a href='{{$contents->onEachSide(2)->url($i)}}' class="fa fa-chevron-left mx-1 flex h-7 w-7 items-center justify-center rounded-full bg-[#9E8A7A] from-pink-600 to-pink-400 p-0 text-sm text-white shadow-md shadow-pink-[#000000] transition duration-150 ease-in-out">{{$i}}</a>
+            @endfor
+        </div>
+        {{$contents->onEachSide(2)->links()}}
+        
 </body>
 </html>
