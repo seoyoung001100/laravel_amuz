@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {{-- <link rel="stylesheet" href="css/list.css"> --}}
     @vite('resources/css/app.css')
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <title>NOTES</title>
     <style>
         /* @import url(resources/css/list.css); */
@@ -20,17 +21,17 @@
             margin: 0 auto;
             width: 1000px;
         }
-        a{
+        #a{
             text-align: center;
-            margin: 20px 20px;
+            margin: 10px 10px;
             padding: 0 0;
-            height: 25px;
+            height: 28px;
         }
         span{
             height: 25px;
-            margin-top:10px;
+            /* margin-top:10px;
             margin-left: 20px;
-            margin-right: 20px;
+            margin-right: 20px; */
             padding: 0 0;
         }
         div h1{
@@ -119,7 +120,15 @@
             line-height: 28px;
             box-shadow: 0 2px 5px rgba(0,0,0,.25);
         }
-        a{
+        #page{
+            padding-top: 20px;
+        }
+        #page:hover{
+            /* background-color: #9E8A7A;
+            color: #fff; */
+            //마우스 올렸을 때 css, 
+        }
+        #a{
             color: #fff;
             text-decoration-line: none;
         }     
@@ -168,6 +177,10 @@
             .title_a{
                 color: #47372a;
             }
+
+            [aria-current]:not([aria-current="false"]) {
+                font-weight: bold;
+            }
     </style>
 </head>
 <body>
@@ -205,17 +218,17 @@
             @endforeach
         </table>
     </div>
-        <div style="display: flex; text-align: center; justify-content: center;">
+        {{-- <div style="display: flex; text-align: center; justify-content: center;">
             @if ($contents->currentPage() > 0)
-                <a href="{{ $contents->previousPageUrl() }}"><i class="fa fa-chevron-left mx-1 flex h-7 w-7 items-center justify-center rounded-full bg-[#9E8A7A] from-pink-600 to-pink-400 p-0 text-sm text-white shadow-md shadow-pink-[#000000] transition duration-150 ease-in-out"
+                <a id="a" href="{{ $contents->previousPageUrl() }}"><i class="fa fa-chevron-left mx-1 flex h-7 w-7 items-center justify-center rounded-full bg-[#9E8A7A] from-pink-600 to-pink-400 p-0 text-sm text-white shadow-md shadow-pink-[#000000] transition duration-150 ease-in-out"
                     href="#"><</i></a>
             @endif
             @for($i = 1; $i <= $contents->lastPage(); $i++)
-                <a href="{{$contents->url($i)}}" class="fa fa-chevron-left mx-1 flex h-7 w-7 items-center justify-center rounded-full bg-[#9E8A7A] from-pink-600 to-pink-400 p-0 text-sm text-white shadow-md shadow-pink-[#000000] transition duration-150 ease-in-out"
+                <a id="a" href="{{$contents->url($i)}}" class="fa fa-chevron-left mx-1 flex h-7 w-7 items-center justify-center rounded-full bg-[#9E8A7A] from-pink-600 to-pink-400 p-0 text-sm text-white shadow-md shadow-pink-[#000000] transition duration-150 ease-in-out"
                     href="#">{{$i}}</a>
             @endfor
             @if ($contents->currentPage() <= $contents->lastPage() )
-                <a href="{{$contents->nextPageUrl()}}"><i class="fa fa-chevron-left mx-1 flex h-7 w-7 items-center justify-center rounded-full bg-[#9E8A7A] from-pink-600 to-pink-400 p-0 text-sm text-white shadow-md shadow-pink-[#000000] transition duration-150 ease-in-out"
+                <a id="a" href="{{$contents->nextPageUrl()}}"><i class="fa fa-chevron-left mx-1 flex h-7 w-7 items-center justify-center rounded-full bg-[#9E8A7A] from-pink-600 to-pink-400 p-0 text-sm text-white shadow-md shadow-pink-[#000000] transition duration-150 ease-in-out"
                     href="#">></i></a>
             @endif
         </div>
@@ -223,8 +236,9 @@
             @for($i = 1; $i <= $contents->lastPage(); $i++)
                 <a href='{{$contents->onEachSide(2)->url($i)}}' class="fa fa-chevron-left mx-1 flex h-7 w-7 items-center justify-center rounded-full bg-[#9E8A7A] from-pink-600 to-pink-400 p-0 text-sm text-white shadow-md shadow-pink-[#000000] transition duration-150 ease-in-out">{{$i}}</a>
             @endfor
-        </div>
-        {{$contents->onEachSide(2)->links()}}
+        </div> --}}
+        <div id="page">{{$contents->onEachSide(2)->links()}}</div>
         
 </body>
 </html>
+
