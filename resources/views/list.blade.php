@@ -27,6 +27,10 @@
             padding: 0 0;
             height: 28px;
         }
+        #a1{
+            color: white;
+            text-decoration-line: none;
+        }
         span{
             height: 25px;
             /* margin-top:10px;
@@ -122,6 +126,7 @@
         }
         #page{
             padding-top: 20px;
+            text-align: center;
         }
         #page:hover{
             /* background-color: #9E8A7A;
@@ -132,6 +137,13 @@
             color: #fff;
             text-decoration-line: none;
         }     
+        a{
+            text-decoration-line: none;
+        }
+        a:hover{
+            background-color: #9E8A7A;
+            color: #fff;
+        }
         @media all and (max-width: 768px) {
             
             table, thead, tbody, th, td, tr {
@@ -176,6 +188,7 @@
             }
             .title_a{
                 color: #47372a;
+                text-decoration-line: none;
             }
 
             [aria-current]:not([aria-current="false"]) {
@@ -194,7 +207,7 @@
     </div>
     <div class="under_head">
         <div class="under_head_1"><h5>Total</h5></div> {{--total을 나타내고 싶음... --}}
-        <div class="under_head_2"><a href="{{route("create")}}"><button class="mb-2 h-7 w-20 items-center justify-center rounded-full bg-[#9E8A7A] from-pink-600 to-pink-400 p-0 text-sm text-white shadow-md shadow-pink-[#000000] duration-150 ease-in-out"  type="submit" value="글쓰기"/>글쓰기</a></div> {{--글쓰기 페이지로 넘어가야함--}}
+        <div class="under_head_2"><a id="a1" href="{{route("create")}}"><button class="mb-2 h-7 w-20 items-center justify-center rounded-full bg-[#9E8A7A] from-pink-600 to-pink-400 p-0 text-sm text-white shadow-md shadow-pink-[#000000] duration-150 ease-in-out"  type="submit" value="글쓰기"/>글쓰기</a></div> {{--글쓰기 페이지로 넘어가야함--}}
     </div>
     
     <div class="list_wrap">
