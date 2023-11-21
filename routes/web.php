@@ -33,3 +33,6 @@ Route::get('/account', [postcontroller::class, 'account' ])->name('account'); //
 //     return view('mysqlTest');
 // });
 // Route::get('/views', [postcontroller::class, 'list']);
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

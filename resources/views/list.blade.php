@@ -137,10 +137,6 @@
         a{
             text-decoration-line: none;
         }
-        a:hover{
-            background-color: #9E8A7A;
-            color: #fff;
-        }
         @media all and (max-width: 768px) {
             
             table, thead, tbody, th, td, tr {
@@ -192,36 +188,12 @@
                 font-weight: bold;
             }
             /* -------------------------------- */
-            .header{
-                /* background-color: #9E8A7A; */
-                margin-bottom: 10%;
-                margin-top: 2%;
-                height: 50px;
-            }
-            .HeaderLogo, .HeaderLogin{
-                float:left;
-                width: 50%;
-                height: 50px;
-                line-height : 50px;
-            }
-            .HeaderLogin{
-                text-align: right;
-            }
-            .HeaderLogo>img{
-                width: 70px;
-            }
     </style>
 </head>
 <body>
-    <div class="header">
-        <div class="HeaderLogo">
-            <img src="{{url('/imgs/LOGO.png')}}" alt="logo"><a href="{{route("list")}}"></a>
-        </div>
-        <div class="HeaderLogin">
-            <a href="{{route('account')}}"><button class="m-2 h-7 w-20 items-center justify-center rounded-full bg-[#9E8A7A] from-pink-600 to-pink-400 p-0 text-sm text-white shadow-md shadow-pink-[#000000] duration-150 ease-in-out" type="submit">회원가입</button></a>
-            <button class="m-2 h-7 w-20 items-center justify-center rounded-full bg-[#9E8A7A] from-pink-600 to-pink-400 p-0 text-sm text-white shadow-md shadow-pink-[#000000] duration-150 ease-in-out" type="submit">로그인</button>
-        </div>
-    </div>
+    @extends('layouts.app')
+
+    @section('content')
     <div>
         <h1>NOTES</h1>
     </div>
@@ -251,27 +223,8 @@
             @endforeach
         </table>
     </div>
-        {{-- <div style="display: flex; text-align: center; justify-content: center;">
-            @if ($contents->currentPage() > 0)
-                <a id="a" href="{{ $contents->previousPageUrl() }}"><i class="fa fa-chevron-left mx-1 flex h-7 w-7 items-center justify-center rounded-full bg-[#9E8A7A] from-pink-600 to-pink-400 p-0 text-sm text-white shadow-md shadow-pink-[#000000] transition duration-150 ease-in-out"
-                    href="#"><</i></a>
-            @endif
-            @for($i = 1; $i <= $contents->lastPage(); $i++)
-                <a id="a" href="{{$contents->url($i)}}" class="fa fa-chevron-left mx-1 flex h-7 w-7 items-center justify-center rounded-full bg-[#9E8A7A] from-pink-600 to-pink-400 p-0 text-sm text-white shadow-md shadow-pink-[#000000] transition duration-150 ease-in-out"
-                    href="#">{{$i}}</a>
-            @endfor
-            @if ($contents->currentPage() <= $contents->lastPage() )
-                <a id="a" href="{{$contents->nextPageUrl()}}"><i class="fa fa-chevron-left mx-1 flex h-7 w-7 items-center justify-center rounded-full bg-[#9E8A7A] from-pink-600 to-pink-400 p-0 text-sm text-white shadow-md shadow-pink-[#000000] transition duration-150 ease-in-out"
-                    href="#">></i></a>
-            @endif
-        </div>
-        <div style="display: flex; text-align: center; justify-content: center;">
-            @for($i = 1; $i <= $contents->lastPage(); $i++)
-                <a href='{{$contents->onEachSide(2)->url($i)}}' class="fa fa-chevron-left mx-1 flex h-7 w-7 items-center justify-center rounded-full bg-[#9E8A7A] from-pink-600 to-pink-400 p-0 text-sm text-white shadow-md shadow-pink-[#000000] transition duration-150 ease-in-out">{{$i}}</a>
-            @endfor
-        </div> --}}
         <div id="page">{{$contents->onEachSide(2)->links()}}</div>
-        
+    @endsection
 </body>
 </html>
 
