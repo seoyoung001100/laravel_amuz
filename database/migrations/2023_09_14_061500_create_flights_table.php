@@ -18,8 +18,6 @@ return new class extends Migration
             $table->string("text"); //테이블 이름 지정
             $table->string("name");
             $table->string("password");
-            
-            
         });
     }
 

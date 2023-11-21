@@ -92,4 +92,7 @@ class postcontroller extends Controller
         $deleted = DB::table('laravel_amuzs')->where('id', $contentId)->delete();
         return redirect(route('list'));
     }
+    public function account(){
+        return view('account');
+    }
 }

@@ -13,9 +13,6 @@
             margin: 0;
             padding: 0;
         }
-        body{
-            margin-top: 10%
-        }
         /* ---------------------- 윗부분 ---------------------- */
         div{
             margin: 0 auto;
@@ -194,14 +191,37 @@
             [aria-current]:not([aria-current="false"]) {
                 font-weight: bold;
             }
+            /* -------------------------------- */
+            .header{
+                /* background-color: #9E8A7A; */
+                margin-bottom: 10%;
+                margin-top: 2%;
+                height: 50px;
+            }
+            .HeaderLogo, .HeaderLogin{
+                float:left;
+                width: 50%;
+                height: 50px;
+                line-height : 50px;
+            }
+            .HeaderLogin{
+                text-align: right;
+            }
+            .HeaderLogo>img{
+                width: 70px;
+            }
     </style>
 </head>
 <body>
-    {{-- <h1 class="text-3xl font-bold underline">
-        Hello world!
-    </h1> --}}
-    {{-- <a href="{{route("index.test")}}">test</a>  --}}
-    {{-- route name으로 불러오기 --}}
+    <div class="header">
+        <div class="HeaderLogo">
+            <img src="{{url('/imgs/LOGO.png')}}" alt="logo"><a href="{{route("list")}}"></a>
+        </div>
+        <div class="HeaderLogin">
+            <a href="{{route('account')}}"><button class="m-2 h-7 w-20 items-center justify-center rounded-full bg-[#9E8A7A] from-pink-600 to-pink-400 p-0 text-sm text-white shadow-md shadow-pink-[#000000] duration-150 ease-in-out" type="submit">회원가입</button></a>
+            <button class="m-2 h-7 w-20 items-center justify-center rounded-full bg-[#9E8A7A] from-pink-600 to-pink-400 p-0 text-sm text-white shadow-md shadow-pink-[#000000] duration-150 ease-in-out" type="submit">로그인</button>
+        </div>
+    </div>
     <div>
         <h1>NOTES</h1>
     </div>
