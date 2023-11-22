@@ -7,7 +7,7 @@
             <div style="color: white; border: 1px solid white; box-shadow: 0 2px 5px rgba(0,0,0,.25);" class="card">
                 <div style="background-color: rgb(158 138 122 / var(--tw-bg-opacity));" class="bg-[#9E8A7A] card-header ">{{ __('Login') }}</div>
 
-                <div class="card-body">
+                <div style="background-color: #ffffff" class="card-body">
                     <form style="color: #47372a;" method="POST" action="{{ route('login') }}">
                         @csrf
 
@@ -53,12 +53,12 @@
 
                         <div class="row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button st type="submit" class="btn btn-primary">
+                                <button style="background-color:#9E8A7A; border: none;" type="submit" class="btn btn-primary">
                                     {{ __('Login') }}
                                 </button>
 
                                 @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
+                                    <a style="color: #47372a;" class="btn btn-link" href="{{ route('password.request') }}">
                                         {{ __('Forgot Your Password?') }}
                                     </a>
                                 @endif

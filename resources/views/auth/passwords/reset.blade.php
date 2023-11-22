@@ -4,8 +4,8 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
+            <div style="color: white; border: 1px solid white; box-shadow: 0 2px 5px rgba(0,0,0,.25);" class="card">
+                <div style="background-color: rgb(158 138 122 / var(--tw-bg-opacity));" class="bg-[#9E8A7A] card-header">{{ __('Reset Password') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('password.update') }}">

@@ -65,6 +65,9 @@
     </style>
 </head>
 <body>
+    @extends('layouts.app')
+
+    @section('content')
             <h1>{{$laravel_amuz[0]->title}}</h1>
             <div class="writing">
                 <div class="writing_head">No.{{$laravel_amuz[0]->id}}</div>
@@ -79,6 +82,6 @@
                 </form>
                
             </div>
-
+    @endsection
 </body>
 </html>

@@ -41,6 +41,9 @@
             border: solid #ffffff 1px;
             width: 49%;
         }
+        .writing_main{
+            background-color: #ffffff;
+        }
         .writing_1>.writing_main>.title{
             font-size: 15px;
             width: 50%;
@@ -86,6 +89,9 @@
             height: 310px; /*이후 글자 속성? 같은거 추가하면 줄여야함*/
             resize: none;
         }
+        #contents{
+            margin-left: 10px;
+        }
 
         .button{
             margin-top: 10px;
@@ -102,10 +108,16 @@
             text-align: right;
             margin-right: 10px;
         }
+        .Today{
+            color: #ffffff;
+        }
 
     </style>
 </head>
 <body>
+    @extends('layouts.app')
+
+    @section('content')
     <div>
         <h1>Create</h1>
     </div>
@@ -129,7 +141,7 @@
 
         <div class="writing">
             <div class="writing_head" id="writing_head">
-                <input id="Today" name="Today_Time" onclick="today">
+                {{-- <input class="Today" id="Today" name="Today_Time" onclick="today"> --}}
             </div> {{--이부분에 현재 날짜 혹은 시간이 나오게 구현하고 싶음.--}}
             <div class="writing_main">
                 <input name="title" id="title" class="title" type="text" placeholder="제목을 입력해주세요." required>
@@ -142,7 +154,7 @@
             <div class="button2"><input class="mb-2 h-7 w-20 items-center justify-center rounded-full bg-[#9E8A7A] from-pink-600 to-pink-400 p-0 text-sm text-white shadow-md shadow-pink-[#000000] duration-150 ease-in-out"  type="submit" value="저장하기" ></div> {{--콘솔창>저장했다는 콘솔>list로 돌아감--}}
         </div>
     </form>
-    
+    @endsection
     <script>
         let today = new Date();
         document.getElementById("writing_head").innerHTML=today.toLocaleDateString()

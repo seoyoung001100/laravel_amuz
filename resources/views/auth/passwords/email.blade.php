@@ -4,17 +4,17 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
+            <div style="color: white; border: 1px solid white; box-shadow: 0 2px 5px rgba(0,0,0,.25);" class="card">
+                <div style="background-color: rgb(158 138 122 / var(--tw-bg-opacity));" class="bg-[#9E8A7A] card-header">{{ __('Reset Password') }}</div>
 
-                <div class="card-body">
+                <div style="background-color: #ffffff" class="card-body">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
                         </div>
                     @endif
 
-                    <form method="POST" action="{{ route('password.email') }}">
+                    <form style="color: #47372a;" method="POST" action="{{ route('password.email') }}">
                         @csrf
 
                         <div class="row mb-3">
@@ -33,8 +33,9 @@
 
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Send Password Reset Link') }}
+                                <button style="background-color:#9E8A7A; border: none;" type="submit" class="btn btn-primary">
+                                    {{ __('Send Password Reset Link') }} 
+                                    {{-- 버튼 누르면 메소드 오류 남. GET이 아닌 POST사용... 어디에 바꾸어야할지 모르겠음 --}}
                                 </button>
                             </div>
                         </div>
