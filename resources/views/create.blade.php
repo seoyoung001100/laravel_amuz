@@ -30,6 +30,7 @@
             border-radius: 5px;
             box-shadow: 0 2px 5px rgba(0,0,0,.25);
             border: solid #ffffff 1px;
+            background-color: #ffffff;
         }
         .writing_top{
             display: flex;
@@ -65,12 +66,13 @@
             padding-left: 10px;
         }
         /* ---------------------- 글쓰는 부분 ---------------------- */
-        hr{
+        div>hr{
             width: 970px;
             height: 1px;
             text-align: center;
             background-color: #cfbbab;
             border: 0;
+            margin: 10px auto;
         }
         .writing_main>input, textarea{
             border: none;

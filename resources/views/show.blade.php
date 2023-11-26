@@ -29,6 +29,7 @@
             box-shadow: 0 2px 5px rgba(0,0,0,.25);
             border: solid #ffffff 1px;
             color: #47372a;
+            background-color: #ffffff;
         }
         .writing_head{
             width: 998px;
@@ -55,6 +56,7 @@
         }
         .writing_text{
             padding: 20px 20px;
+            background-color: #ffffff;
         }
         .btn{
             text-align: center;

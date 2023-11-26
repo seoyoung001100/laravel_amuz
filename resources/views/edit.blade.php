@@ -30,6 +30,10 @@
             border-radius: 5px;
             box-shadow: 0 2px 5px rgba(0,0,0,.25);
             border: solid #ffffff 1px;
+            background-color: #ffffff;
+        }
+        .writing_main{
+            background-color: #ffffff;
         }
         .writing_top{
             display: flex;
@@ -60,13 +64,13 @@
             padding-left: 10px;
         }
         /* ---------------------- 글쓰는 부분 ---------------------- */
-        hr{
+        div>hr{
             width: 978px;
             height: 1px;
             text-align: center;
             background-color: #cfbbab;
             border: 0;
-            margin: 0 auto;
+            margin: 10px auto;
         }
         .writing_main>input, textarea{
             border: none;
@@ -84,6 +88,9 @@
             margin-top: 10px;
             height: 310px; /*이후 글자 속성? 같은거 추가하면 줄여야함*/
             resize: none;
+        }
+        #contents{
+            margin-left: 10px;
         }
 
         .button{
@@ -105,6 +112,9 @@
     </style>
 </head>
 <body>
+    @extends('layouts.app')
+
+    @section('content')
     <div>
         <h1>Edit</h1>
     </div>
@@ -123,7 +133,7 @@
             <div class="button2"><input class="mb-2 h-7 w-20 items-center justify-center rounded-full bg-[#9E8A7A] from-pink-600 to-pink-400 p-0 text-sm text-white shadow-md shadow-pink-[#000000] duration-150 ease-in-out"  type="submit" value="저장하기" ></div> {{--콘솔창>저장했다는 콘솔>list로 돌아감--}}
         </div>
     </form>
-    
+    @endsection
     <script>
         let today = new Date();
         document.getElementById("writing_head").innerHTML=today.toLocaleDateString()
