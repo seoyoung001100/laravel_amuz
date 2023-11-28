@@ -125,21 +125,10 @@
     </div>
     <form action="{{route("upload")}}" method="post">
         @csrf {{--  보안 --}}
-        <div class="writing_top">
-            <div class="writing_1">
-                <div class="writing_head"></div>
-                <div class="writing_main">
-                    <input name="name" class="title" type="text" placeholder="이름을 입력해주세요." required>
-                </div>
-            </div>
-            <div class="writing_1">
-                <div class="writing_head"></div>
-                <div class="writing_main">
-                    <input name="password" class="title" type="password" placeholder="비밀번호를 입력해주세요." required>
-                </div>
-            </div>
-            </div>
-        <br>
+
+        <input style="display: none" type="text" name="name" value="{{Auth::user()->name}}">
+        <input style="display: none" type="text" name="UserKey" value="{{Auth::user()->email}}">
+        
 
         <div class="writing">
             <div class="writing_head" id="writing_head">
@@ -157,11 +146,6 @@
         </div>
     </form>
     @endsection
-    <script>
-        let today = new Date();
-        document.getElementById("writing_head").innerHTML=today.toLocaleDateString()
-        
-    </script>
 </body>
 
 </html>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\laravel_amuz;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 
 class postcontroller extends Controller
@@ -20,16 +21,25 @@ class postcontroller extends Controller
     public function list(Request $request){
         // $this->laravel_amuz = $laravel_amuz; //총 레코드 수
         $contents = $this->laravel_amuz->orderBy('created_at', 'desc')->paginate(5); //내림차순으로 정리되게 함
+        $total = DB::table('laravel_amuzs')->count();
+
         // $pageNum = ($_GET['page']) ? $_GET['page'] : 1;
         // $block_count = 5;
         // $block_num = ceil($pageNum/$block_count);
         // $block_start = (($block_num-1)*$block_count)+1; //블록 시작 번호
-        return view('list', compact(['contents'])); //모델 가져옴
+        return view('list', compact(['contents','total'])); //모델 가져옴
     }
 
 
-    public function create(){
-        return view('create');
+    public function create(Request $request){
+        $checked=$request->checked;
+        if($checked==0){
+            return redirect()->route('list')->with('alert','로그인을 해주세요.');
+        }
+        else{
+            return view('create');
+        }
+        
     }
     //글 작성
     public function upload(Request $request){
@@ -37,9 +47,10 @@ class postcontroller extends Controller
             'title'=>'required',
             'text'=>'required',
             'name'=>'required',
-            'password'=>'required'
+            'UserKey'=>'required'
         ]); //들어가는 값들에 해당 설정을 부여하지 않으면 오류가 남
         $this->laravel_amuz->create($request);
+        
         return redirect()->route('list');
     }
 
@@ -47,9 +58,8 @@ class postcontroller extends Controller
     //상세보기
     public function show(Request $request){
         $contentId = $request->content;
-        $contents = $this->laravel_amuz;
-        $laravel_amuz = DB::table('laravel_amuzs')->where('id', $contentId)->get(); //쿼리문에 해당하는 배열을 가져옴
-        return view('show', compact(["laravel_amuz","contents"]));
+        $laravel_amuz = DB::table('laravel_amuzs')->where('id', $contentId)->first(); //쿼리문에 해당하는 배열을 가져옴
+            return view('show', compact(["laravel_amuz"]));
     }
 
 
@@ -57,8 +67,15 @@ class postcontroller extends Controller
     public function edit(Request $request){
         $contentId = $request->content;
         
-        $laravel_amuz = DB::table('laravel_amuzs')->where('id', $contentId)->get();
-        return view('edit', compact("laravel_amuz"));
+        $laravel_amuz = DB::table('laravel_amuzs')->where('id', $contentId)->first();
+        $checked=$request->checked;
+        if(Auth::user()->email!=$laravel_amuz->UserKey){
+            return redirect()->route('list')->with('alert','본인 글이 아니면 수정이 불가능 합니다. 메인 페이지로 넘어갑니다.');
+        }
+        elseif(Auth::user()->email==$laravel_amuz->UserKey){
+            return view('edit', compact("laravel_amuz"));
+        }
+        
     }
 
 

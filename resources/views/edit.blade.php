@@ -118,20 +118,24 @@
     <div>
         <h1>Edit</h1>
     </div>
-    <form action="{{route("update", $laravel_amuz[0]->id)}}" method="post">
+    <form action="{{route("update", $laravel_amuz->id)}}" method="post">
         @csrf {{--  보안 --}}
         <div class="writing">
             <div class="writing_head" id="writing_head"></div> {{--이부분에 현재 날짜 혹은 시간이 나오게 구현하고 싶음.--}}
             <div class="writing_main">
-                <input name="title" id="title" class="title" type="text" value="{{$laravel_amuz[0]->title}}" required>
+                <input name="title" id="title" class="title" type="text" value="{{$laravel_amuz->title}}" required>
                 <hr>
-                <textarea name="text" id="contents" required>{{$laravel_amuz[0]->text}}</textarea>
+                <textarea name="text" id="contents" required>{{$laravel_amuz->text}}</textarea>
+                {{$laravel_amuz->UserKey}}
             </div>
         </div><br>
-        
-        <div class="button">
-            <div class="button2"><input class="mb-2 h-7 w-20 items-center justify-center rounded-full bg-[#9E8A7A] from-pink-600 to-pink-400 p-0 text-sm text-white shadow-md shadow-pink-[#000000] duration-150 ease-in-out"  type="submit" value="저장하기" ></div> {{--콘솔창>저장했다는 콘솔>list로 돌아감--}}
-        </div>
+        @if(Auth::check()==false)
+                <div></div>
+        @elseif(Auth::user()->email==$laravel_amuz->UserKey)
+            <div class="button">
+                <div class="button2"><input class="mb-2 h-7 w-20 items-center justify-center rounded-full bg-[#9E8A7A] from-pink-600 to-pink-400 p-0 text-sm text-white shadow-md shadow-pink-[#000000] duration-150 ease-in-out"  type="submit" value="저장하기" ></div> {{--콘솔창>저장했다는 콘솔>list로 돌아감--}}
+            </div>
+        @endif
     </form>
     @endsection
     <script>
@@ -140,5 +144,11 @@
         
     </script>
 </body>
-
+<script>
+    let msg = '{{Session::get('alert')}}';
+    let exist = '{{Session::has('alert')}}';
+    if(exist){
+      alert(msg);
+    }
+</script>
 </html>

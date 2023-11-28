@@ -23,7 +23,6 @@ Route::get('contents/edit/{content}',[postController::class, 'edit'])->name("edi
 Route::post('contents/edit/{content}',[postController::class, 'update'])->name("update");
 Route::delete('contents/{content}', [postController::class, 'destroy']) -> name('delete');
 
-Route::get('/account', [postcontroller::class, 'account' ])->name('account'); //이름 붙이기
 
 // Route::get('/test', function () {
 //     return view('test');

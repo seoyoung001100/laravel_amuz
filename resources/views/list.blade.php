@@ -196,11 +196,12 @@
     @section('content')
     <div>
         <h1>NOTES</h1>
+      
     </div>
     <div class="under_head">
-        <div class="under_head_1"><h5>Total</h5></div> {{--total을 나타내고 싶음... --}}
-        <div class="under_head_2"><a id="a1" href="{{route("create")}}"><button class="mb-2 h-7 w-20 items-center justify-center rounded-full bg-[#9E8A7A] from-pink-600 to-pink-400 p-0 text-sm text-white shadow-md shadow-pink-[#000000] duration-150 ease-in-out"  type="submit" value="글쓰기"/>글쓰기</a></div> {{--글쓰기 페이지로 넘어가야함--}}
-    </div>
+        <div class="under_head_1"><h5>Total.  {{$total}}</h5></div> {{--total을 나타내고 싶음... --}}
+            <div class="under_head_2"><a id="a1" href="{{route("create", ["checked"=>Auth::check()])}}"><button class="mb-2 h-7 w-20 items-center justify-center rounded-full bg-[#9E8A7A] from-pink-600 to-pink-400 p-0 text-sm text-white shadow-md shadow-pink-[#000000] duration-150 ease-in-out"  type="submit" value="글쓰기">글쓰기</a></div> {{--글쓰기 페이지로 넘어가야함--}}
+        </div>
     
     <div class="list_wrap">
         <table class="list">
@@ -226,5 +227,14 @@
         <div id="page">{{$contents->onEachSide(2)->links()}}</div>
     @endsection
 </body>
+​
+
+<script>
+    let msg = '{{Session::get('alert')}}';
+    let exist = '{{Session::has('alert')}}';
+    if(exist){
+      alert(msg);
+    }
+</script>
 </html>
 

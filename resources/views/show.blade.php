@@ -70,20 +70,23 @@
     @extends('layouts.app')
 
     @section('content')
-            <h1>{{$laravel_amuz[0]->title}}</h1>
+            <h1>{{$laravel_amuz->title}}</h1>
             <div class="writing">
-                <div class="writing_head">No.{{$laravel_amuz[0]->id}}</div>
-                <div class="writing_text"> {{$laravel_amuz[0]->text}} </div>
+                <div class="writing_head">No.{{$laravel_amuz->id}}</div>
+                <div class="writing_text"> {{$laravel_amuz->text}} </div>
             </div>
-            <div class="btn">
-                <input class="m-2 h-7 w-20 items-center justify-center rounded-full bg-[#9E8A7A] from-pink-600 to-pink-400 p-0 text-sm text-white shadow-md shadow-pink-[#000000] duration-150 ease-in-out" type="button" value="수정" onclick=" location.href= '{{route('edit', $laravel_amuz[0]->id)}}'">
-                <form method="POST" action="/contents/{{ $laravel_amuz[0]->id }}">
-                    @csrf
-                    @method('delete')
-                    <button class="m-2 h-7 w-20 items-center justify-center rounded-full bg-[#9E8A7A] from-pink-600 to-pink-400 p-0 text-sm text-white shadow-md shadow-pink-[#000000] duration-150 ease-in-out" type="submit">삭제
-                </form>
-               
-            </div>
+            @if(Auth::check()==false)
+                <div></div>
+            @elseif(Auth::user()->email==$laravel_amuz->UserKey)
+                <div class="btn">
+                    <input class="m-2 h-7 w-20 items-center justify-center rounded-full bg-[#9E8A7A] from-pink-600 to-pink-400 p-0 text-sm text-white shadow-md shadow-pink-[#000000] duration-150 ease-in-out" type="button" value="수정" onclick=" location.href= '{{route('edit', $laravel_amuz->id)}}'">
+                    <form method="POST" action="/contents/{{ $laravel_amuz->id }}">
+                        @csrf
+                        @method('delete')
+                        <button class="m-2 h-7 w-20 items-center justify-center rounded-full bg-[#9E8A7A] from-pink-600 to-pink-400 p-0 text-sm text-white shadow-md shadow-pink-[#000000] duration-150 ease-in-out" type="submit">삭제</button>
+                    </form>
+                </div>
+            @endif
     @endsection
 </body>
 </html>
