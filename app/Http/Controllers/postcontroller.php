@@ -24,10 +24,6 @@ class postcontroller extends Controller
         $total = DB::table('laravel_amuzs')->count();
         
 
-        // $pageNum = ($_GET['page']) ? $_GET['page'] : 1;
-        // $block_count = 5;
-        // $block_num = ceil($pageNum/$block_count);
-        // $block_start = (($block_num-1)*$block_count)+1; //블록 시작 번호
         return view('list', compact(['contents','total'])); //모델 가져옴
     }
 
@@ -117,16 +113,16 @@ class postcontroller extends Controller
 
     //마이페이지
     public function mypage(Request $request){
-
-        // $this->laravel_amuz = $laravel_amuz; //총 레코드 수
-        $contents = $this->laravel_amuz->orderBy('created_at', 'desc'); //내림차순으로 정리되게 함
+        $contents = $this->laravel_amuz->orderBy('created_at', 'desc'); 
         $total = DB::table('laravel_amuzs')->where('UserKey', $request->UserKey)->count();
-        $myPosts = DB::table('laravel_amuzs')->where('UserKey', $request->UserKey)->get();
+        $myPosts = DB::table('laravel_amuzs')->where('UserKey', $request->UserKey)->paginate(100);
+        
 
-        // $pageNum = ($_GET['page']) ? $_GET['page'] : 1;
-        // $block_count = 5;
-        // $block_num = ceil($pageNum/$block_count);
-        // $block_start = (($block_num-1)*$block_count)+1; //블록 시작 번호
-        return view('mypage', compact(['contents','total', 'myPosts'])); //모델 가져옴
+        if(Auth::user()->email!==$myPosts[0]->UserKey){
+            return redirect()->route('list')->with('alert','허가되지 않은 사용자입니다.');
+        }
+        elseif(Auth::user()->email==$myPosts[0]->UserKey){
+            return view('mypage', compact(['contents','total', 'myPosts'])); 
+        }
     }
 }
