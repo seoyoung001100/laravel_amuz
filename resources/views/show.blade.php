@@ -64,6 +64,9 @@
             display: flex;
             justify-content: center;
         }
+        .btn:active, .btn:hover{
+            border: none;
+        }
     </style>
 </head>
 <body>

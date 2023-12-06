@@ -62,12 +62,16 @@
             line-height: 20px;
         }
         #dropdown-menu{
-            height: 40px;
+            height: 80px;
             text-align: center;
-            line-height: 17px
+            line-height: 17px;
+            background-color: white;
         }
         .dropdown-item{
             height: 20px;
+        }
+        .dropdown-item:hover, .dropdown-item:active{
+            background-color: white;
         }
     </style>
 </head>
@@ -96,7 +100,7 @@
                                 </button>
                                 <ul class="dropdown-menu" id="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                     <li>
-                                        <a class="dropdown-item" href="{{ route('logout') }}" 
+                                        <a style="color: #47372a;" class="dropdown-item" href="{{ route('logout') }}" 
                                             onclick="event.preventDefault(); 
                                                     document.getElementById('logout-form').submit();">
                                             {{ __('Logout') }}
@@ -105,6 +109,9 @@
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
+                                    <li style="line-height: 45px">
+                                        <a style="line-height: 45px; color: #47372a;" class="dropdown-item" href="{{ route('mypage', Auth::user()->email) }}">{{ __('My Page') }}</a>
+                                    </li>
                                 </ul>
                             </li>
 

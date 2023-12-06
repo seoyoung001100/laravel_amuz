@@ -22,6 +22,7 @@ class postcontroller extends Controller
         // $this->laravel_amuz = $laravel_amuz; //총 레코드 수
         $contents = $this->laravel_amuz->orderBy('created_at', 'desc')->paginate(5); //내림차순으로 정리되게 함
         $total = DB::table('laravel_amuzs')->count();
+        
 
         // $pageNum = ($_GET['page']) ? $_GET['page'] : 1;
         // $block_count = 5;
@@ -111,5 +112,21 @@ class postcontroller extends Controller
     }
     public function account(){
         return view('account');
+    }
+    
+
+    //마이페이지
+    public function mypage(Request $request){
+
+        // $this->laravel_amuz = $laravel_amuz; //총 레코드 수
+        $contents = $this->laravel_amuz->orderBy('created_at', 'desc'); //내림차순으로 정리되게 함
+        $total = DB::table('laravel_amuzs')->where('UserKey', $request->UserKey)->count();
+        $myPosts = DB::table('laravel_amuzs')->where('UserKey', $request->UserKey)->get();
+
+        // $pageNum = ($_GET['page']) ? $_GET['page'] : 1;
+        // $block_count = 5;
+        // $block_num = ceil($pageNum/$block_count);
+        // $block_start = (($block_num-1)*$block_count)+1; //블록 시작 번호
+        return view('mypage', compact(['contents','total', 'myPosts'])); //모델 가져옴
     }
 }

@@ -126,7 +126,6 @@
                 <input name="title" id="title" class="title" type="text" value="{{$laravel_amuz->title}}" required>
                 <hr>
                 <textarea name="text" id="contents" required>{{$laravel_amuz->text}}</textarea>
-                {{$laravel_amuz->UserKey}}
             </div>
         </div><br>
         @if(Auth::check()==false)
